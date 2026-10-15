@@ -1,0 +1,52 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  # 1. Thu thap truc tiep Nginx logs (Access & Error logs)
+  - job_name: nginx
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: nginx
+          service: nginx-reverse-proxy
+          __path__: /var/log/nginx/*.log
+
+  # 2. Thu thap log Docker Containers qua socket / log files
+  - job_name: docker-containers
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: docker
+          __path__: /var/lib/docker/containers/*/*-json.log
+    pipeline_stages:
+      - json:
+          expressions:
+            log: log
+            stream: stream
+            time: time
+            tag: attrs.tag
+      - regex:
+          expression: '(?P<container_name>[a-zA-Z0-9_\-]+)'
+          source: tag
+      - labels:
+          container_name:
+          stream:
+
+  # 3. Dedicated scrape target cho webapp
+  - job_name: webapp
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: webapp
+          service: project-management
+          __path__: /var/log/webapp/*.log
