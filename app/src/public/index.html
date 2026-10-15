@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hệ thống Quản lý Dự án | Trịnh Ngọc Tường - DTC245200211</title>
+  <meta name="description" content="Hệ thống Quản lý Dự án (Project Management) - Báo cáo Bài tập lớn Triển khai và Quản trị Hệ thống Phần mềm - Trường Đại học Công nghệ Thông tin và Truyền thông Thái Nguyên.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h2 class="brand-title">PM Cloud</h2>
+          <span class="brand-subtitle">ICTU DevOps Stack</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#kanban" class="nav-item active" data-tab="kanban">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          Bảng Kanban
+        </a>
+        <a href="#projects" class="nav-item" data-tab="projects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Danh sách Dự án
+        </a>
+        <a href="#monitoring" class="nav-item" data-tab="monitoring">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Giám sát & Quản trị
+        </a>
+        <a href="#team" class="nav-item" data-tab="team">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Thành viên
+        </a>
+      </nav>
+
+      <!-- STUDENT INFO CARD -->
+      <div class="student-badge">
+        <div class="student-avatar">TT</div>
+        <div class="student-meta">
+          <strong>Trịnh Ngọc Tường</strong>
+          <span>MSSV: DTC245200211</span>
+          <span class="badge-role">Đề tài 14 (STT: 54)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div>
+          <h1 class="page-title" id="pageTitle">Bảng Công Việc Kanban</h1>
+          <p class="page-desc">Đề tài: Hệ thống Quản lý Dự án (Project Management) - Triển khai & Quản trị Microservices</p>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="system-status-chip" id="systemStatusChip">
+            <span class="status-dot pulsing"></span>
+            <span id="systemStatusText">Đang kết nối...</span>
+          </div>
+
+          <button class="btn btn-secondary" id="btnTest500" title="Kích hoạt lỗi HTTP 500 để kiểm chứng Nginx access log & Promtail/Loki">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Trigger Test Error (LogQL)
+          </button>
+
+          <button class="btn btn-primary" id="btnOpenNewTask">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tạo Công Việc
+          </button>
+        </div>
+      </header>
+
+      <!-- STATS STRIP -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon icon-blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <div class="stat-num" id="statProjects">0</div>
+            <div class="stat-label">Tổng Dự Án</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon icon-purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div>
+            <div class="stat-num" id="statTasks">0</div>
+            <div class="stat-label">Tổng Công Việc</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon icon-green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="stat-num" id="statCompleted">0</div>
+            <div class="stat-label">Đã Hoàn Thành</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon icon-amber">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+          </div>
+          <div>
+            <div class="stat-num" id="statProgress">0%</div>
+            <div class="stat-label">Tỷ Lệ Tiến Độ</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 1: KANBAN BOARD -->
+      <section id="tab-kanban" class="tab-pane active">
+        <div class="kanban-board">
+          <!-- Cột To Do -->
+          <div class="kanban-column" data-status="To Do">
+            <div class="kanban-header todo-header">
+              <span class="col-title">Chờ Thực Hiện (To Do)</span>
+              <span class="count-badge" id="count-todo">0</span>
+            </div>
+            <div class="kanban-cards" id="cards-todo"></div>
+          </div>
+
+          <!-- Cột In Progress -->
+          <div class="kanban-column" data-status="In Progress">
+            <div class="kanban-header inprogress-header">
+              <span class="col-title">Đang Triển Khai (In Progress)</span>
+              <span class="count-badge" id="count-inprogress">0</span>
+            </div>
+            <div class="kanban-cards" id="cards-inprogress"></div>
+          </div>
+
+          <!-- Cột Done -->
+          <div class="kanban-column" data-status="Done">
+            <div class="kanban-header done-header">
+              <span class="col-title">Đã Hoàn Thành (Done)</span>
+              <span class="count-badge" id="count-done">0</span>
+            </div>
+            <div class="kanban-cards" id="cards-done"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: PROJECTS LIST -->
+      <section id="tab-projects" class="tab-pane">
+        <div class="section-actions">
+          <h3>Danh Sách Dự Án Đang Quản Trị</h3>
+          <button class="btn btn-primary" id="btnOpenNewProject">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tạo Dự Án Mới
+          </button>
+        </div>
+        <div class="projects-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tên Dự Án</th>
+                <th>Ưu Tiên</th>
+                <th>Tiến Độ</th>
+                <th>Trạng Thái</th>
+                <th>Hạn Chót</th>
+                <th>Phụ Trách</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="projectsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 3: MONITORING & DEVOPS -->
+      <section id="tab-monitoring" class="tab-pane">
+        <div class="monitoring-overview">
+          <div class="card-notice">
+            <div class="notice-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Kiến Trúc Hạ Tầng Triển Khai Container & Giám Sát Tập Trung
+            </div>
+            <p>Hệ thống bao gồm 8 container dịch vụ hoạt động theo mô hình Microservices khép kín, định tuyến qua Nginx Reverse Proxy với HTTPS tự ký và phân tách mạng nội bộ độc lập.</p>
+          </div>
+
+          <div class="service-links-grid">
+            <a href="https://localhost" target="_blank" class="service-card">
+              <div class="service-icon nginx">NGINX</div>
+              <div class="service-info">
+                <h4>Nginx Reverse Proxy</h4>
+                <p>Port: 80 (HTTP) -> 443 (HTTPS)</p>
+                <span class="service-tag tag-green">Gateway / SSL / Headers</span>
+              </div>
+            </a>
+
+            <a href="http://localhost:9090" target="_blank" class="service-card">
+              <div class="service-icon prometheus">PROM</div>
+              <div class="service-info">
+                <h4>Prometheus Metrics</h4>
+                <p>Port: 9090 | Scrape interval: 15s</p>
+                <span class="service-tag tag-blue">Target: webapp, cadvisor</span>
+              </div>
+            </a>
+
+            <a href="http://localhost:3001" target="_blank" class="service-card">
+              <div class="service-icon grafana">GRAF</div>
+              <div class="service-info">
+                <h4>Grafana Dashboard</h4>
+                <p>Port: 3001 (User: admin / Pass: Admin@2026)</p>
+                <span class="service-tag tag-purple">Visual Dashboards & Explore</span>
+              </div>
+            </a>
+
+            <a href="http://localhost:3100/ready" target="_blank" class="service-card">
+              <div class="service-icon loki">LOKI</div>
+              <div class="service-info">
+                <h4>Grafana Loki</h4>
+                <p>Port: 3100 | Log Store</p>
+                <span class="service-tag tag-amber">LogQL Query Engine</span>
+              </div>
+            </a>
+
+            <a href="http://localhost:8080" target="_blank" class="service-card">
+              <div class="service-icon adminer">DB-UI</div>
+              <div class="service-info">
+                <h4>Adminer Database GUI</h4>
+                <p>Port: 8080 (PostgreSQL Manager)</p>
+                <span class="service-tag tag-green">Quản trị PostgreSQL Trực Quan</span>
+              </div>
+            </a>
+
+            <a href="/metrics" target="_blank" class="service-card">
+              <div class="service-icon webapp">METRIC</div>
+              <div class="service-info">
+                <h4>Webapp Metrics Endpoint</h4>
+                <p>URL: /metrics (Prometheus Format)</p>
+                <span class="service-tag tag-blue">prom-client Express</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- LOGQL VALIDATION SHOWCASE -->
+          <div class="logql-showcase">
+            <h3>Xác Thực 2 Câu Truy Vấn LogQL (Yêu Cầu Bước 5)</h3>
+            <div class="logql-grid">
+              <div class="logql-card">
+                <div class="logql-header">
+                  <span class="badge-query">Truy vấn 1</span>
+                  <strong>Lọc log lỗi HTTP 5xx từ Nginx Access Log</strong>
+                </div>
+                <code class="logql-code">{job="nginx"} |= "HTTP/1.1" 5"</code>
+                <p class="logql-desc">Áp dụng bộ lọc stream Nginx và tìm kiếm chuỗi phản hồi HTTP 5xx trả về cho client.</p>
+                <button class="btn btn-sm btn-outline" onclick="triggerTestError('nginx')">Thực thi mô phỏng lỗi Nginx 5xx</button>
+              </div>
+
+              <div class="logql-card">
+                <div class="logql-header">
+                  <span class="badge-query">Truy vấn 2</span>
+                  <strong>Tìm kiếm thông điệp Lỗi / Ngoại lệ ứng dụng</strong>
+                </div>
+                <code class="logql-code">{job="webapp"} |~ "(ERROR|Exception|Failed)"</code>
+                <p class="logql-desc">Sử dụng Regular Expression tìm kiếm các bản ghi có chứa từ khóa ERROR, Exception hoặc Failed trong log Webapp.</p>
+                <button class="btn btn-sm btn-outline" onclick="triggerTestError('webapp')">Thực thi mô phỏng Webapp Exception</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- HARDENING CHECKLIST -->
+          <div class="hardening-checklist">
+            <h3>Danh Mục Kiểm Soát An Toàn Thông Tin (Hardening - Bước 6)</h3>
+            <div class="hardening-items">
+              <div class="h-item checked">
+                <span class="h-icon">&#10003;</span>
+                <div>
+                  <strong>Non-root User:</strong> Ứng dụng Node.js chạy dưới quyền user <code>appuser (UID 1001)</code>, không chạy root.
+                </div>
+              </div>
+              <div class="h-item checked">
+                <span class="h-icon">&#10003;</span>
+                <div>
+                  <strong>Network Isolation:</strong> Phân tách 3 mạng nội bộ Docker <code>frontend-net</code>, <code>backend-net</code>, <code>monitoring-net</code>. CSDL PostgreSQL không public port ra Internet.
+                </div>
+              </div>
+              <div class="h-item checked">
+                <span class="h-icon">&#10003;</span>
+                <div>
+                  <strong>Bảo mật Biến môi trường:</strong> Tách biệt tệp <code>.env</code>, mật khẩu CSDL phức tạp (chữ hoa, số, ký tự đặc biệt).
+                </div>
+              </div>
+              <div class="h-item checked">
+                <span class="h-icon">&#10003;</span>
+                <div>
+                  <strong>Nginx Security Headers:</strong> Kích hoạt <code>X-Frame-Options: SAMEORIGIN</code>, <code>X-Content-Type-Options: nosniff</code>, <code>X-XSS-Protection: 1; mode=block</code>, <code>Referrer-Policy</code>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: TEAM MEMBERS -->
+      <section id="tab-team" class="tab-pane">
+        <div class="section-actions">
+          <h3>Đội Ngũ Triển Khai Dự Án</h3>
+        </div>
+        <div class="members-grid" id="membersGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL TẠO CÔNG VIỆC MỚI -->
+  <dialog id="modalTask" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTaskTitle">Thêm Công Việc Mới</h3>
+        <button class="modal-close" onclick="closeModal('modalTask')">&times;</button>
+      </div>
+      <form id="formNewTask">
+        <div class="form-group">
+          <label for="taskTitle">Tiêu đề công việc *</label>
+          <input type="text" id="taskTitle" required placeholder="Nhập tên công việc...">
+        </div>
+        <div class="form-group">
+          <label for="taskProject">Thuộc dự án</label>
+          <select id="taskProject"></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="taskStatus">Trạng thái</label>
+            <select id="taskStatus">
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+          <div class="form-group col-half">
+            <label for="taskPriority">Mức độ ưu tiên</label>
+            <select id="taskPriority">
+              <option value="Low">Thấp (Low)</option>
+              <option value="Medium" selected>Trung bình (Medium)</option>
+              <option value="High">Cao (High)</option>
+              <option value="Critical">Khẩn cấp (Critical)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="taskAssignee">Người thực hiện</label>
+            <input type="text" id="taskAssignee" value="Trịnh Ngọc Tường">
+          </div>
+          <div class="form-group col-half">
+            <label for="taskDueDate">Hạn chót</label>
+            <input type="date" id="taskDueDate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="taskDesc">Mô tả chi tiết</label>
+          <textarea id="taskDesc" rows="3" placeholder="Ghi chú thêm về yêu cầu công việc..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalTask')">Hủy bỏ</button>
+          <button type="submit" class="btn btn-primary">Lưu Công Việc</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- MODAL TẠO DỰ ÁN MỚI -->
+  <dialog id="modalProject" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tạo Dự Án Mới</h3>
+        <button class="modal-close" onclick="closeModal('modalProject')">&times;</button>
+      </div>
+      <form id="formNewProject">
+        <div class="form-group">
+          <label for="projName">Tên dự án *</label>
+          <input type="text" id="projName" required placeholder="Nhập tên dự án...">
+        </div>
+        <div class="form-group">
+          <label for="projDesc">Mô tả dự án</label>
+          <textarea id="projDesc" rows="3" placeholder="Mô tả mục tiêu và phạm vi của dự án..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="projPriority">Mức độ ưu tiên</label>
+            <select id="projPriority">
+              <option value="Low">Low</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
+          <div class="form-group col-half">
+            <label for="projProgress">Tiến độ (%)</label>
+            <input type="number" id="projProgress" min="0" max="100" value="0">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label for="projStartDate">Ngày bắt đầu</label>
+            <input type="date" id="projStartDate">
+          </div>
+          <div class="form-group col-half">
+            <label for="projDeadline">Hạn hoàn thành</label>
+            <input type="date" id="projDeadline">
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalProject')">Hủy</button>
+          <button type="submit" class="btn btn-primary">Tạo Dự Án</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
