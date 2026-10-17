@@ -191,6 +191,17 @@ services:
     networks:
       - monitoring_net
 
+  # ============================================================================
+  # DỊCH VỤ 10: NODE EXPORTER - GIÁM SÁT TÀI NGUYÊN MÁY CHỦ HOST
+  # ============================================================================
+  node-exporter:
+    image: prom/node-exporter:v1.7.0
+    container_name: pm-node-exporter
+    restart: unless-stopped
+    networks:
+      - monitoring_net
+
+
 # ==============================================================================
 # CẤU HÌNH PHÂN TÁCH MẠNG NỘI BỘ (HARDENING: NETWORK ISOLATION - BƯỚC 6)
 # ==============================================================================
