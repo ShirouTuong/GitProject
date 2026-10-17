@@ -6,8 +6,6 @@
 # Trường: Đại học Công nghệ Thông tin và Truyền thông Thái Nguyên (ICTU)
 # ==============================================================================
 
-version: '3.8'
-
 services:
   # ============================================================================
   # DỊCH VỤ 1: CƠ SỞ DỮ LIỆU POSTGRESQL (BƯỚC 1 - HARDENING NETWORK ISOLATION)
