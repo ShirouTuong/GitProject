@@ -114,7 +114,7 @@ def setup_alerts():
                             }
                         ],
                         "datasource": {"name": "Expression", "type": "__expr__", "uid": "__expr__"},
-                        "expression": "B > 0.1",
+                        "expression": "$B > 0.1",
                         "refId": "C",
                         "type": "math"
                     }
@@ -191,7 +191,7 @@ def setup_alerts():
                             }
                         ],
                         "datasource": {"name": "Expression", "type": "__expr__", "uid": "__expr__"},
-                        "expression": "B < 1",
+                        "expression": "$B < 1",
                         "refId": "C",
                         "type": "math"
                     }
@@ -288,7 +288,7 @@ groups:
                 name: Expression
                 type: __expr__
                 uid: __expr__
-              expression: B > 0.1
+              expression: $B > 0.1
               refId: C
               type: math
         noDataState: OK
@@ -370,7 +370,7 @@ groups:
                 name: Expression
                 type: __expr__
                 uid: __expr__
-              expression: B < 1
+              expression: $B < 1
               refId: C
               type: math
         noDataState: Alerting
