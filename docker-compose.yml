@@ -1,15 +1,4 @@
-# ==============================================================================
-# BÀI TẬP LỚN / BÀI KIỂM TRA CUỐI KỲ: TRIỂN KHAI VÀ QUẢN TRỊ HỆ THỐNG PHẦN MỀM
-# Đề tài 14: Hệ thống Quản lý Dự án (Project Management)
-# Sinh viên thực hiện: Trịnh Ngọc Tường
-# Mã số sinh viên (MSSV): DTC245200211 - STT: 54
-# Trường: Đại học Công nghệ Thông tin và Truyền thông Thái Nguyên (ICTU)
-# ==============================================================================
-
 services:
-  # ============================================================================
-  # DỊCH VỤ 1: CƠ SỞ DỮ LIỆU POSTGRESQL (BƯỚC 1 - HARDENING NETWORK ISOLATION)
-  # ============================================================================
   db:
     image: postgres:15-alpine
     container_name: pm-database
@@ -28,9 +17,6 @@ services:
       timeout: 5s
       retries: 5
 
-  # ============================================================================
-  # DỊCH VỤ 2: CÔNG CỤ QUẢN TRỊ CSDL TRỰC QUAN ADMINER (BƯỚC 1)
-  # ============================================================================
   adminer:
     image: adminer:latest
     container_name: pm-adminer
@@ -43,9 +29,21 @@ services:
     depends_on:
       - db
 
-  # ============================================================================
-  # DỊCH VỤ 3: ỨNG DỤNG WEB QUẢN LÝ DỰ ÁN (BƯỚC 2 - HARDENING NON-ROOT USER)
-  # ============================================================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pm-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@tuong.ictu.vn}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-SecurePass@Tuong2026!}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - backend_net
+      - frontend_net
+    depends_on:
+      - db
+
   webapp:
     build:
       context: ./app
@@ -70,10 +68,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-
-  # ============================================================================
-  # DỊCH VỤ 4: NGINX REVERSE PROXY & SSL HARDENING (BƯỚC 3 - COMMIT 1)
-  # ============================================================================
   nginx:
     image: nginx:1.25-alpine
     container_name: pm-nginx
@@ -92,9 +86,6 @@ services:
     depends_on:
       - webapp
 
-  # ============================================================================
-  # DỊCH VỤ 5: HỆ THỐNG THU THẬP METRICS PROMETHEUS (BƯỚC 4 - COMMIT 2)
-  # ============================================================================
   prometheus:
     image: prom/prometheus:v2.51.0
     container_name: pm-prometheus
@@ -115,9 +106,6 @@ services:
       - '--web.console.templates=/usr/share/prometheus/consoles'
       - '--web.enable-lifecycle'
 
-  # ============================================================================
-  # DỊCH VỤ 6: BẢNG ĐIỀU KHIỂN TRỰC QUAN GRAFANA (BƯỚC 4 - COMMIT 2)
-  # ============================================================================
   grafana:
     image: grafana/grafana:10.4.0
     container_name: pm-grafana
@@ -128,6 +116,8 @@ services:
       - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD:-AdminSecure@2026!}
       - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     volumes:
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
       - grafana_data:/var/lib/grafana
@@ -137,9 +127,6 @@ services:
       - prometheus
       - loki
 
-  # ============================================================================
-  # DỊCH VỤ 7: HỆ THỐNG LƯU TRỮ LOG TẬP TRUNG LOKI (BƯỚC 5 - COMMIT 3)
-  # ============================================================================
   loki:
     image: grafana/loki:2.9.4
     container_name: pm-loki
@@ -153,9 +140,6 @@ services:
       - monitoring_net
     command: -config.file=/etc/loki/local-config.yaml
 
-  # ============================================================================
-  # DỊCH VỤ 8: PROMTAIL AGENT THU THẬP LOG CONTAINER (BƯỚC 5 - COMMIT 3)
-  # ============================================================================
   promtail:
     image: grafana/promtail:2.9.4
     container_name: pm-promtail
@@ -172,9 +156,6 @@ services:
     depends_on:
       - loki
 
-  # ============================================================================
-  # DỊCH VỤ 9: CADVISOR - GIÁM SÁT RESOURCE CỦA CONTAINER (METRICS)
-  # ============================================================================
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.49.1
     container_name: pm-cadvisor
@@ -191,9 +172,6 @@ services:
     networks:
       - monitoring_net
 
-  # ============================================================================
-  # DỊCH VỤ 10: NODE EXPORTER - GIÁM SÁT TÀI NGUYÊN MÁY CHỦ HOST
-  # ============================================================================
   node-exporter:
     image: prom/node-exporter:v1.7.0
     container_name: pm-node-exporter
@@ -201,10 +179,6 @@ services:
     networks:
       - monitoring_net
 
-
-# ==============================================================================
-# CẤU HÌNH PHÂN TÁCH MẠNG NỘI BỘ (HARDENING: NETWORK ISOLATION - BƯỚC 6)
-# ==============================================================================
 networks:
   frontend_net:
     driver: bridge
@@ -217,9 +191,6 @@ networks:
     driver: bridge
     name: pm_monitoring_net
 
-# ==============================================================================
-# LƯU TRỮ DỮ LIỆU BỀN VỮNG (PERSISTENT VOLUMES)
-# ==============================================================================
 volumes:
   pgdata:
     name: pm_pgdata

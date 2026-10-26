@@ -6,7 +6,7 @@
 
 Write-Host "==================================================================" -ForegroundColor Cyan
 Write-Host "      KIEM TRA HE THONG QUAN LY DU AN (PROJECT MANAGEMENT)" -ForegroundColor Cyan
-Write-Host "      Sinh vien: Trinh Ngoc Tuong | MSSV: DTC245200211 | STT: 54" -ForegroundColor Cyan
+Write-Host "      Sinh vien: Trinh Ngoc Tuong | MSSV: DTC245200211 | Lop: CNTTK23E | STT: 54" -ForegroundColor Cyan
 Write-Host "==================================================================" -ForegroundColor Cyan
 
 function Check-ServiceEndpoint {

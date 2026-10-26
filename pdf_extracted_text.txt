@@ -1,0 +1,408 @@
+--- PAGE 1 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 1 / 11
+ĐỀTÀI THỰC HÀNH
+Môn: Triển khai và Quản trịHệthống Phần mềm
+Tổng sốđề: 40
+Yêu cầu chung cho tất cảcác đề
+1.Quản lý toàn bộmã nguồn và file cấu hình (docker-compose, Nginx,
+Prometheus…) trên GitHub (commit rõ ràng, có README). Tạo tài khoản và
+đặt tên theo mã sốSV.
+2.Triển khai ứng dụng web nêu trên, tích hợp Database và công cụquản lý DB
+tương ứng.
+3.Cấu hình Nginx làm reverse proxy (có HTTPS tựký hoặc security headers cơ
+bản). -> commit 1
+4.Tích hợp Prometheus + Grafana đểgiám sát container, web server và database. ->
+Commit 2
+5.Triển khai hệthống log tập trung Loki + Promtail, truy vấn log bằng LogQL (ít
+nhất 2–3 query). -> commit 3
+6.Áp dụng các biện pháp hardening: non-root container, network isolation, mật
+khẩu mạnh, hạn chếquyền, security headers Nginx, v.v.
+7.Viết báo cáo tổng hợp tối thiểu 10 trang, yêu cầu:
+a)Thông tin của sinh viên, chủđềđưa vào bìa ngoài cùng (định dạng chuẩn như
+báo cáo thực tập)
+b)Mô tảcấu trúc của hệthống, cách thức hoạt động, kết quảcủa 6 bước trên (có
+hình minh họa đưa vào báo cáo)
+Lưu ý: Tất cảdịch vụtriển khai bằng Docker Compose. Sinh viên cần có repository GitHub,
+README hướng dẫn chạy, và demo đầy đủcác thành phần (website, DB tool, Grafana, LogQL,
+hardening).
+Tiêu chí đánh giá đềtài
+Tiêu chí
+Nội dung đánh giá
+Điểm
+1. Quản lý mã nguồn
+trên GitHub
+Repository đầy đủ(source + cấu hình), đủ03 commit
+và nội dung có ý nghĩa, có README hướng dẫn chạy
+hệthống rõ ràng
+1.5
+2. Triển khai ứng
+dụng + Database
+Ứng dụng chạy ổn định, kết nối DB thành công, có
+phpMyAdmin hoặc pgAdmin hoạt động
+1.5
+
+
+--- PAGE 2 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 2 / 11
+Tiêu chí
+Nội dung đánh giá
+Điểm
+3. Nginx Reverse
+Proxy
+Cấu hình reverse proxy đúng, truy cập website qua
+Nginx (có HTTPS hoặc security headers cơ bản)
+1.5
+4. Hệthống giám sát
+(Prometheus +
+Grafana)
+Prometheus thu thập metrics, Grafana có dashboard
+giám sát container / web / DB
+1.5
+5. Hệthống log tập
+trung (Loki)
+Loki + Promtail hoạt động, truy vấn được log bằng
+LogQL (ít nhất 2–3 query cơ bản)
+1.5
+6. Hardening hệthống
+Áp dụng ít nhất 3–4 biện pháp bảo mật (non-root
+container, network isolation, mật khẩu mạnh, security
+headers, hạn chếquyền DB…)
+1.5
+7. Tổng thể& Trình
+bày
+Hệthống chạy hoàn chỉnh bằng docker-compose,
+demo rõ ràng, có screenshot/minh chứng, chắc kiến
+thức, hiểu bài.
+1.0
+Danh sách các đềtài
+Đề1: Hệthống Quản lý Thư viện
+Phần mềm cần triển khai: Ứng dụng web quản lý thư viện (mượn/trảsách, quản lý độc giả, sách)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python/PHP + PostgreSQL + pgAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề2: Hệthống Quản lý Sinh viên
+Phần mềm cần triển khai: Website quản lý sinh viên (CRUD sinh viên, lớp, điểm số)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Laravel/Express/Django + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+
+
+--- PAGE 3 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 3 / 11
+Đề3: Website Quảng bá Sản phẩm (WordPress)
+Phần mềm cần triển khai: Website giới thiệu sản phẩm sửdụng WordPress (hoặc tương đương)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: WordPress official image + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề4: Hệthống CRM Chăm sóc Khách hàng
+Phần mềm cần triển khai: Ứng dụng CRM quản lý khách hàng, liên hệ, lịch sửtương tác
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề5: Hệthống Quản lý Kho hàng (Inventory)
+Phần mềm cần triển khai: Website quản lý kho (nhập/xuất hàng, tồn kho, nhà cung cấp)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: PHP/Node.js + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề6: Hệthống Đặt phòng Khách sạn
+Phần mềm cần triển khai: Website đặt phòng khách sạn (phòng, đặt chỗ, khách hàng)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: React/Node hoặc Django + PostgreSQL + pgAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề7: Hệthống Blog / CMS
+Phần mềm cần triển khai: Website blog hoặc CMS đơn giản (bài viết, danh mục, người dùng)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+
+
+--- PAGE 4 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 4 / 11
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Ghost / WordPress / tựviết (Node/PHP) + MySQL + phpMyAdmin + Nginx +
+Prometheus + Grafana + Loki
+Đề8: Hệthống Quản lý Phòng khám / Bệnh viện
+Phần mềm cần triển khai: Website quản lý bệnh nhân, lịch khám, bác sĩ
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Python (Django/Flask) hoặc Node.js + PostgreSQL + pgAdmin + Nginx +
+Prometheus + Grafana + Loki
+Đề9: Website Thương mại điện tử(E-commerce)
+Phần mềm cần triển khai: Website bán hàng online (sản phẩm, giỏhàng, đơn hàng)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/PHP/Laravel + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề10: Hệthống Quản lý Nhân sự(HRM)
+Phần mềm cần triển khai: Ứng dụng quản lý nhân viên, phòng ban, chấm công cơ bản
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề11: Hệthống Đặt vé Xem phim / Sựkiện
+Phần mềm cần triển khai: Website đặt vé (suất chiếu, ghế, thanh toán giảlập)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Express/Laravel + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana
++ Loki
+
+
+--- PAGE 5 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 5 / 11
+Đề12: Hệthống Quản lý Nhà hàng / Order
+Phần mềm cần triển khai: Website quản lý món ăn, đơn hàng, bàn ăn
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề13: Website Portfolio / Giới thiệu Cá nhân
+Phần mềm cần triển khai: Website portfolio cá nhân có trang admin quản lý nội dung
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: React/Next.js hoặc PHP + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề14: Hệthống Quản lý Dựán (Project Management)
+Phần mềm cần triển khai: Ứng dụng quản lý dựán, task, thành viên
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js (Nest/Express) hoặc Django + PostgreSQL + pgAdmin + Nginx +
+Prometheus + Grafana + Loki
+Đề15: Diễn đàn / Cộng đồng (Forum)
+Phần mềm cần triển khai: Website diễn đàn (chủđề, bài viết, bình luận, người dùng)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/PHP + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề16: Hệthống Quản lý Tài sản / Thiết bị
+Phần mềm cần triển khai: Website quản lý tài sản, thiết bị, lịch sửbảo trì
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+
+
+--- PAGE 6 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 6 / 11
+Gợi ý: Stack gợi ý: Python/Node.js + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề17: Hệthống Học trực tuyến (LMS đơn giản)
+Phần mềm cần triển khai: Website khóa học, bài học, học viên, đăng ký
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Laravel/Django/Node + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề18: Hệthống Quản lý Hóa đơn / Billing
+Phần mềm cần triển khai: Website tạo và quản lý hóa đơn, khách hàng, thanh toán
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề19: Website Tin tức / Cổng thông tin
+Phần mềm cần triển khai: Website tin tức (bài viết, danh mục, admin đăng bài)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: WordPress hoặc tựviết (PHP/Node) + MySQL + phpMyAdmin + Nginx +
+Prometheus + Grafana + Loki
+Đề20: Hệthống Booking Tour / Du lịch
+Phần mềm cần triển khai: Website đặt tour du lịch (tour, lịch trình, khách hàng)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Django + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề21: Hệthống Quản lý Cửa hàng / POS
+
+
+--- PAGE 7 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 7 / 11
+Phần mềm cần triển khai: Website quản lý bán hàng tại cửa hàng (sản phẩm, hóa đơn, tồn kho
+nhanh)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/PHP/Laravel + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề22: Hệthống Đặt xe / Taxi Booking
+Phần mềm cần triển khai: Ứng dụng web đặt xe (chuyến đi, tài xế, khách hàng, trạng thái)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề23: Hệthống Quản lý Phòng Gym / Fitness
+Phần mềm cần triển khai: Website quản lý hội viên, gói tập, lịch tập, huấn luyện viên
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Express/Laravel/Django + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề24: Hệthống Quản lý Công việc / Task Tracker
+Phần mềm cần triển khai: Ứng dụng quản lý công việc cá nhân/nhóm (task, deadline, trạng thái)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js (Nest/Express) hoặc Python + PostgreSQL + pgAdmin + Nginx +
+Prometheus + Grafana + Loki
+Đề25: Website Bất động sản
+Phần mềm cần triển khai: Website đăng tin bất động sản (nhà đất, tìm kiếm, liên hệ)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+
+
+--- PAGE 8 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 8 / 11
+Gợi ý: Stack gợi ý: Laravel/Node.js + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana
++ Loki
+Đề26: Hệthống Quản lý Sựkiện / Event
+Phần mềm cần triển khai: Website tổchức sựkiện (sựkiện, đăng ký tham dự, vé)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Django/Node.js + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề27: Hệthống Điểm danh / Attendance
+Phần mềm cần triển khai: Website điểm danh nhân viên hoặc sinh viên (ca làm, lịch sử)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: PHP/Node.js + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề28: Hệthống Quản lý Cửa hàng Thú cưng
+Phần mềm cần triển khai: Website quản lý thú cưng, dịch vụspa, khách hàng, lịch hẹn
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề29: Website Công thức Nấu ăn / Recipe
+Phần mềm cần triển khai: Website chia sẻcông thức nấu ăn (món ăn, nguyên liệu, danh mục)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: WordPress hoặc tựviết (Node/PHP) + MySQL + phpMyAdmin + Nginx +
+Prometheus + Grafana + Loki
+Đề30: Hệthống Quản lý Đội xe / Fleet
+Phần mềm cần triển khai: Website quản lý xe, bảo dưỡng, lịch trình, tài xế
+
+
+--- PAGE 9 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 9 / 11
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Python/Node.js + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề31: Hệthống Thư viện Ảnh / Gallery
+Phần mềm cần triển khai: Website quản lý album ảnh, upload, phân loại, chia sẻ
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/PHP + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề32: Hệthống Chat / Messaging đơn giản
+Phần mềm cần triển khai: Ứng dụng chat nội bộ(phòng chat, tin nhắn, người dùng)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js (Socket.io) + PostgreSQL + pgAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề33: Website Tuyển dụng / Job Board
+Phần mềm cần triển khai: Website đăng tin tuyển dụng, ứng viên nộp CV, quản lý tin
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Laravel/Express + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana
++ Loki
+Đề34: Hệthống Quản lý Hợp đồng
+Phần mềm cần triển khai: Website quản lý hợp đồng (tạo, theo dõi, trạng thái, bên liên quan)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Django/Node.js + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+
+
+--- PAGE 10 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 10 / 11
+Đề35: Hệthống Quiz / Thi trắc nghiệm
+Phần mềm cần triển khai: Website tạo đềthi trắc nghiệm, làm bài, chấm điểm tựđộng
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/PHP/Laravel + MySQL + phpMyAdmin + Nginx + Prometheus +
+Grafana + Loki
+Đề36: Hệthống Quản lý Chung cư / Căn hộ
+Phần mềm cần triển khai: Website quản lý cư dân, phí dịch vụ, thông báo, khiếu nại
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Python/Node.js + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề37: Website Podcast / Media Library
+Phần mềm cần triển khai: Website quản lý podcast/audio (tập, danh mục, nghe thử)
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/PHP + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề38: Hệthống Quản lý Chi tiêu / Expense Tracker
+Phần mềm cần triển khai: Ứng dụng theo dõi chi tiêu cá nhân/gia đình (giao dịch, danh mục, báo
+cáo)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Python + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+Đề39: Hệthống Quản lý Câu lạc bộ/ Club
+Phần mềm cần triển khai: Website quản lý thành viên CLB, hoạt động, đóng góp, lịch họp
+Cơ sởdữliệu: MySQL + phpMyAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+
+
+--- PAGE 11 ---
+Triển khai và Quản trịHệthống Phần mềm
+Trang 11 / 11
+Gợi ý: Stack gợi ý: Laravel/Express + MySQL + phpMyAdmin + Nginx + Prometheus + Grafana
++ Loki
+Đề40: Hệthống Đặt lịch hẹn / Appointment
+Phần mềm cần triển khai: Website đặt lịch hẹn (dịch vụ, khung giờ, khách hàng, xác nhận)
+Cơ sởdữliệu: PostgreSQL + pgAdmin
+Yêu cầu kỹthuật: Giống yêu cầu chung (GitHub, Nginx reverse proxy, Prometheus + Grafana,
+Loki + LogQL, Hardening).
+Gợi ý: Stack gợi ý: Node.js/Django + PostgreSQL + pgAdmin + Nginx + Prometheus + Grafana +
+Loki
+
+

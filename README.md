@@ -5,6 +5,8 @@
 - **Mã số sinh viên (MSSV):** DTC245200211
 - **Số thứ tự (STT):** 54
 - **Đề tài số 14:** **Hệ thống Quản lý Dự án (Project Management)**
+- **Lớp:** CNTTK23E
+- **Giảng viên phụ trách:** Bộ môn Triển khai và quản trị hệ thống phần mềm
 - **Đơn vị đào tạo:** Khoa Công nghệ Thông tin - Trường Đại học Công nghệ Thông tin và Truyền thông Thái Nguyên (ICTU)
 - **Năm thực hiện:** 2026
 

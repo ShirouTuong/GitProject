@@ -25,3 +25,5 @@ Thumbs.db
 .idea/
 extracted_doc.txt
 clean_doc.txt
+__pycache__/
+*.pyc

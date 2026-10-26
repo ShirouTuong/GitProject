@@ -1,7 +1,7 @@
 
 echo "=================================================================="
 echo "      KIỂM TRA TRẠNG THÁI HỆ THỐNG QUẢN LÝ DỰ ÁN (PROJECT MANAGEMENT)"
-echo "      Sinh viên: Trịnh Ngọc Tường | MSSV: DTC245200211 | STT: 54"
+echo "      Sinh viên: Trịnh Ngọc Tường | MSSV: DTC245200211 | Lớp: CNTTK23E | STT: 54"
 echo "=================================================================="
 
 GREEN='\033[0;32m'

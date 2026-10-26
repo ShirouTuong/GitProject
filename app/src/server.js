@@ -132,6 +132,7 @@ app.get('/api/health', (req, res) => {
     student: {
       name: 'Trịnh Ngọc Tường',
       mssv: 'DTC245200211',
+      class: 'CNTTK23E',
       topic: 'Hệ thống Quản lý Dự án (Project Management) - Đề tài 14'
     }
   });
@@ -354,7 +355,7 @@ app.get('/api/members', async (req, res) => {
 const server = app.listen(PORT, '0.0.0.0', () => {
   logger.info(`================================================================`);
   logger.info(`[HỆ THỐNG QUẢN LÝ DỰ ÁN] Khởi chạy thành công trên cổng ${PORT}`);
-  logger.info(`Sinh viên: Trịnh Ngọc Tường | MSSV: DTC245200211 | Lớp: ICTU 2026`);
+  logger.info(`Sinh viên: Trịnh Ngọc Tường | MSSV: DTC245200211 | Lớp: CNTTK23E - ICTU 2026`);
   logger.info(`Metrics Prometheus: http://localhost:${PORT}/metrics`);
   logger.info(`Health check: http://localhost:${PORT}/api/health`);
   logger.info(`================================================================`);
