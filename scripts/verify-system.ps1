@@ -43,6 +43,7 @@ Check-ServiceEndpoint "Nginx HTTPS (Web Application)" "https://localhost:443" 20
 
 Write-Host "`n2. CO SO DU LIEU & GIAM SAT HE THONG" -ForegroundColor Yellow
 Check-ServiceEndpoint "Adminer (Quan ly CSDL)" "http://localhost:8080" 200
+Check-ServiceEndpoint "pgAdmin 4 (Quan ly CSDL De 14)" "http://localhost:5050" 302
 Check-ServiceEndpoint "Prometheus Metrics Server" "http://localhost:9090/-/healthy" 200
 Check-ServiceEndpoint "Grafana Dashboard" "http://localhost:3001/api/health" 200
 Check-ServiceEndpoint "Loki Log Engine" "http://localhost:3100/ready" 200

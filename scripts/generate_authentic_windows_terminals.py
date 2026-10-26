@@ -276,6 +276,7 @@ Kiem tra Nginx HTTPS (Web Application) (https://localhost:443)... <span class="o
 
 <span class="header-row">2. CO SO DU LIEU & GIAM SAT HE THONG</span>
 Kiem tra Adminer (Quan ly CSDL) (http://localhost:8080)...        <span class="ok-status">[OK] (HTTP 200)</span>
+Kiem tra pgAdmin 4 (Quan ly CSDL De 14) (http://localhost:5050)... <span class="ok-status">[OK] (HTTP 302)</span>
 Kiem tra Prometheus Metrics Server (http://localhost:9090/-/healthy)... <span class="ok-status">[OK] (HTTP 200)</span>
 Kiem tra Grafana Dashboard (http://localhost:3001/api/health)... <span class="ok-status">[OK] (HTTP 200)</span>
 Kiem tra Loki Log Engine (http://localhost:3100/ready)...       <span class="ok-status">[OK] (HTTP 200)</span>
@@ -288,7 +289,7 @@ Kiem tra Test 500 Nginx LogQL (https://localhost/api/test/error)...     <span cl
 Kiem tra Test Webapp Exception LogQL (https://localhost/api/test/exception)... <span class="ok-status">[OK] (HTTP 500)</span>
 
 <span class="title-highlight">==================================================================
-HOAN TAT KIEM THU! 8/8 HANG MUC DAT CHUAN 100% PASSED
+HOAN TAT KIEM THU! 9/9 HANG MUC DAT CHUAN 100% PASSED
 Ban co the xem Dashboard tai: http://localhost:3001
 ==================================================================</span></div>
     <div class="prompt">PS C:\Users\ADMIN\ImpotantSoftware&gt; <span class="cursor"></span></div>
