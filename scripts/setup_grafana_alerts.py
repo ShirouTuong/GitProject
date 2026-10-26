@@ -50,7 +50,7 @@ def setup_alerts():
             "ruleGroup": "Security & Incident Alerts",
             "noDataState": "OK",
             "execErrState": "Error",
-            "for": "10s",
+            "for": "0s",
             "annotations": {
                 "summary": "Cảnh báo Tỷ lệ Lỗi HTTP 5xx vượt ngưỡng an toàn (> 5%)",
                 "description": "Hệ thống phát hiện dấu hiệu bất thường: Tỷ lệ mã phản hồi 5xx tăng đột biến trên cổng Nginx / Webapp, nghi vấn tấn công từ chối dịch vụ hoặc cạn kiệt tài nguyên CSDL."
@@ -128,7 +128,7 @@ def setup_alerts():
             "ruleGroup": "Security & Incident Alerts",
             "noDataState": "Alerting",
             "execErrState": "Error",
-            "for": "10s",
+            "for": "0s",
             "annotations": {
                 "summary": "Giám sát trạng thái khả dụng của Container Web Application",
                 "description": "Container pm-webapp không phản hồi HTTP probe từ Prometheus."
@@ -293,7 +293,7 @@ groups:
               type: math
         noDataState: OK
         execErrState: Error
-        for: 10s
+        for: 0s
         annotations:
           summary: "Cảnh báo Tỷ lệ Lỗi HTTP 5xx vượt ngưỡng an toàn (> 5%)"
           description: "Hệ thống phát hiện dấu hiệu bất thường: Tỷ lệ mã phản hồi 5xx tăng đột biến trên cổng Nginx / Webapp, nghi vấn tấn công từ chối dịch vụ hoặc cạn kiệt tài nguyên CSDL."
@@ -375,7 +375,7 @@ groups:
               type: math
         noDataState: Alerting
         execErrState: Error
-        for: 10s
+        for: 0s
         annotations:
           summary: "Giám sát trạng thái khả dụng của Container Web Application"
           description: "Container pm-webapp không phản hồi HTTP probe từ Prometheus."
