@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const winston = require('winston');
 const client = require('prom-client');
 require('dotenv').config();
@@ -13,6 +14,26 @@ const PORT = process.env.PORT || 3000;
 // ==========================================
 // 1. CẤU HÌNH WINSTON LOGGER (CHO LOKI & PROMTAIL)
 // ==========================================
+const loggerTransports = [
+  new winston.transports.Console()
+];
+
+const webappLogDir = process.env.LOG_DIR || '/var/log/webapp';
+try {
+  if (!fs.existsSync(webappLogDir)) {
+    fs.mkdirSync(webappLogDir, { recursive: true });
+  }
+  loggerTransports.push(
+    new winston.transports.File({
+      filename: path.join(webappLogDir, 'app.log'),
+      maxsize: 10 * 1024 * 1024,
+      maxFiles: 5
+    })
+  );
+} catch (err) {
+  console.warn('File logging disabled:', err.message);
+}
+
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: winston.format.combine(
@@ -23,9 +44,7 @@ const logger = winston.createLogger({
     })
   ),
   defaultMeta: { service: 'webapp', app: 'project-management' },
-  transports: [
-    new winston.transports.Console()
-  ]
+  transports: loggerTransports
 });
 
 // ==========================================

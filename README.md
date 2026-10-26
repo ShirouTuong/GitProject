@@ -187,7 +187,7 @@ docker compose ps
 
 ## 6. LỊCH SỬ COMMITS THEO TIẾN ĐỘ ĐỀ BÀI
 
-- `Commit 1`: Triển khai Ứng dụng Web Quản lý Dự án, Cơ sở dữ liệu PostgreSQL, Adminer và Nginx Reverse Proxy (SSL & Security Headers).
+- `Commit 1`: Triển khai Ứng dụng Web Quản lý Dự án, Cơ sở dữ liệu PostgreSQL, pgAdmin 4, Adminer và Nginx Reverse Proxy (SSL & Security Headers).
 - `Commit 2`: Tích hợp Hệ thống Giám sát Số liệu Prometheus và Bảng điều khiển Grafana Dashboard.
-- `Commit 3`: Tích hợp Hệ thống Quản lý Nhật ký Log tập trung Loki + Promtail và xác thực 2 câu truy vấn LogQL.
+- `Commit 3`: Tích hợp Hệ thống Quản lý Nhật ký Log tập trung Loki + Promtail và xác thực 3 câu truy vấn LogQL.
 - `Commit 4`: Áp dụng toàn diện các biện pháp Hardening (Non-root user, Network Isolation, Rate Limiting), hoàn thiện Scripts kiểm thử và Báo cáo.

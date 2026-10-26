@@ -17,7 +17,9 @@ FROM node:20-alpine AS runner
 
 # Hardening: Tao non-root user va group voi UID/GID co dinh (1001)
 RUN addgroup -g 1001 -S appgroup && \
-    adduser -u 1001 -S appuser -G appgroup
+    adduser -u 1001 -S appuser -G appgroup && \
+    mkdir -p /var/log/webapp && \
+    chown -R appuser:appgroup /var/log/webapp
 
 WORKDIR /usr/src/app
 
